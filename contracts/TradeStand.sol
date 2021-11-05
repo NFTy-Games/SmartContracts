@@ -54,6 +54,8 @@ contract TradeStand is ERC721Enumerable, ERC721URIStorage, Ownable, EmergencyRec
         _setTokenURI(itemId, metaFileURI);
     }
 
+    // TODO do we need a freeze functionality?
+
     //++++++++
     // Explicit overrides
     //++++++++

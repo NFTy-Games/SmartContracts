@@ -1,10 +1,10 @@
 pragma solidity 0.8.7;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 abstract contract EmergencyRecover is Ownable {
-    function emergencyRecoverETH(address payable receiver, uint256 amount) external payable onlyOwner {
+    function emergencyRecoverETH(address payable receiver, uint256 amount) external onlyOwner {
         require(receiver != address(0), "Cannot recover ETH to the 0 address");
         receiver.transfer(amount);
     }

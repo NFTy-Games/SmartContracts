@@ -8,6 +8,10 @@ require("hardhat-contract-sizer");
 require("./tasks/deployTradeStand");
 require("./tasks/mintTradeStand");
 
+require("./tasks/deployCosmetics");
+require("./tasks/mintCosmeticsForCommunity");
+require("./tasks/toggleCosmeticsSaleState");
+
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 const GAS_PRICE = process.env.GAS_PRICE;
 
@@ -51,6 +55,9 @@ const config = {
         },
       },
     ],
+  },
+  mocha: {
+    timeout: 120000,
   },
 };
 
