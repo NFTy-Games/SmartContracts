@@ -53,8 +53,12 @@ contract Cosmetics is ERC1155, Ownable, EmergencyRecover {
         _setURI(uri);
     }
 
-    function setMintPrice(string memory _mintPrice) external onlyOwner {
+    function setMintPrice(uint256 _mintPrice) external onlyOwner {
         mintPrice = _mintPrice;
+    }
+
+    function setSeed(uint256 _seed) external onlyOwner {
+        seed = _seed;
     }
 
     function toggleSaleState() external onlyOwner {
