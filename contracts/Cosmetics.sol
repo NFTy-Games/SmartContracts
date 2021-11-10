@@ -84,8 +84,6 @@ contract Cosmetics is ERC1155, Ownable, EmergencyRecover {
         to.transfer(balance);
     }
 
-    // TODO do we need a freeze functionality?
-
     //++++++++
     // Internal functions
     //++++++++

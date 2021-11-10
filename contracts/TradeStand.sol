@@ -9,12 +9,21 @@ import "./abstract/EmergencyWithdrawable.sol";
 contract TradeStand is ERC721Enumerable, ERC721URIStorage, Ownable, EmergencyRecover {
     using Counters for Counters.Counter;
 
+    bool public metadataFrozen;
+
     // The token URI must be the full URI in this contract.
     string constant baseUri = "";
 
     Counters.Counter public _tokenIdCounter;
 
-    constructor() ERC721("Polymon World Trade Stand", "TRADE") {}
+    modifier whenMetadataIsNotFrozen() {
+        require(!metadataFrozen, "Metadata already frozen");
+        _;
+    }
+
+    constructor() ERC721("Polymon World Trade Stand", "TRADE") {
+        metadataFrozen = false;
+    }
 
     //++++++++
     // Public functions
@@ -50,11 +59,13 @@ contract TradeStand is ERC721Enumerable, ERC721URIStorage, Ownable, EmergencyRec
         return newItemId;
     }
 
-    function setTokenURI(uint256 itemId, string calldata metaFileURI) public onlyOwner {
+    function setTokenURI(uint256 itemId, string calldata metaFileURI) public onlyOwner whenMetadataIsNotFrozen {
         _setTokenURI(itemId, metaFileURI);
     }
 
-    // TODO do we need a freeze functionality?
+    function freezeMetadata() external onlyOwner whenMetadataIsNotFrozen {
+        metadataFrozen = true;
+    }
 
     //++++++++
     // Explicit overrides

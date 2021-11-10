@@ -21,6 +21,10 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 const RINKEBY_RPC_PROVIDER_URL = process.env.RINKEBY_RPC_PROVIDER_URL;
 const RINKEBY_PRIVATE_KEY = process.env.RINKEBY_PRIVATE_KEY;
 
+// mainnet
+const MAINNET_RPC_PROVIDER_URL = process.env.MAINNET_RPC_PROVIDER_URL;
+const MAINNET_PRIVATE_KEY = process.env.MAINNET_PRIVATE_KEY;
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -69,6 +73,18 @@ if (RINKEBY_RPC_PROVIDER_URL && RINKEBY_PRIVATE_KEY) {
     throwOnCallFailures: true,
     allowUnlimitedContractSize: true,
     blockGasLimit: 0x1fffffffffffff,
+  };
+}
+
+if (MAINNET_RPC_PROVIDER_URL && MAINNET_PRIVATE_KEY) {
+  config.networks.mainnet = {
+    accounts: [`${MAINNET_PRIVATE_KEY}`],
+    url: MAINNET_RPC_PROVIDER_URL,
+    throwOnTransactionFailures: true,
+    throwOnCallFailures: true,
+    allowUnlimitedContractSize: true,
+    blockGasLimit: 0x1fffffffffffff,
+    gasPrice: 50000000000
   };
 }
 
