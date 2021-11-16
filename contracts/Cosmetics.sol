@@ -14,6 +14,11 @@ contract Cosmetics is ERC1155, Ownable, EmergencyRecover {
     uint256 public mintPrice;
     uint256 seed;
 
+    // Contract name
+    string public name = "Polymon World Cosmetics";
+    // Contract symbol
+    string public symbol = "PWCO";
+
     constructor(string memory uri) ERC1155(uri) {
         saleIsActive = false;
         mintPrice = 50000000000000000;
